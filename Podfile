@@ -7,6 +7,7 @@ target 'OpenWeather' do
 
   # Pods for OpenWeather
   pod 'RxSwift'
+  pod 'PromiseKit'
 
   target 'OpenWeatherTests' do
     inherit! :search_paths
