@@ -15,7 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let storyboard = UIStoryboard(name: "Weather", bundle: nil)
+        let identifier = "WeatherViewController"
+        guard let weatherViewController = storyboard.instantiateViewController(withIdentifier: identifier) as? WeatherViewController else {
+            fatalError("Unable to initialize view controller with identifier: \(identifier)")
+        }
+        let navigationController = UINavigationController(rootViewController: weatherViewController)
+        navigationController.navigationBar.barTintColor = .blue
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
