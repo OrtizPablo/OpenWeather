@@ -17,9 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let storyboard = UIStoryboard(name: "Weather", bundle: nil)
         let identifier = "WeatherViewController"
+        
         guard let weatherViewController = storyboard.instantiateViewController(withIdentifier: identifier) as? WeatherViewController else {
             fatalError("Unable to initialize view controller with identifier: \(identifier)")
         }
+        
+        let viewModel = WeatherViewModelImpl()
+        weatherViewController.viewModel = viewModel
+        weatherViewController.bindViewModel()
+        
         let navigationController = UINavigationController(rootViewController: weatherViewController)
         navigationController.navigationBar.barTintColor = .blue
         
